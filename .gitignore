@@ -1,9 +1,10 @@
 /media
+
 # Ignore database migrations
 **/migrations/*.py
 **/migrations/*.pyc
 
-# Ignore Python bytecode
+# ignoring python bytecode
 **/*.pyc
 __pycache__/
 .env

@@ -73,11 +73,11 @@ STATICFILES_DIRS = [
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'mydatabase',
-        'USER': 'myuser',
+        'USER': 'myusername',
         'PASSWORD': 'mypassword',
-        'HOST': '127.0.0.1',  
+        'HOST': 'hcg-youth.chugiqweehte.eu-north-1.rds.amazonaws.com',  
         'PORT': '5432',
     }
 }
@@ -139,4 +139,4 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587 
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'abhayrathi448@gmail.com'  
-EMAIL_HOST_PASSWORD = 
+EMAIL_HOST_PASSWORD = 'cqtrwvhcsveujydi' 

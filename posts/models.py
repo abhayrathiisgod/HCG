@@ -2,7 +2,6 @@ from django.db import models
 from django.core.validators import FileExtensionValidator
 from django_ckeditor_5.fields import CKEditor5Field
 import uuid
-# Create your models here.
 
 class PostMeta(models.Model):
     class Meta:
@@ -32,11 +31,9 @@ class PostType(PostMeta):
     class Meta:
         verbose_name = "Post Type"
         verbose_name_plural = "2. Post Types"
-    
     pass
     
 class PostTag(PostMeta):
-
     class Meta:
         verbose_name = "Post Tag"
         verbose_name_plural = "3. Post Tags"
