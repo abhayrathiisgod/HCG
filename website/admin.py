@@ -1,5 +1,5 @@
 from django.contrib import admin
-from website.models import ContactUs, Page, Files, Designation, ContactHcg, OurInitiatives, NewsLetter, FrequentlyAskedQuestions, SocialMediaURL
+from website.models import ContactUs,BulkEmail, Page, Files, Designation, ContactHcg, OurInitiatives, NewsLetter, FrequentlyAskedQuestions, SocialMediaURL
 
 class CustomAdmin(admin.ModelAdmin):
     def has_delete_permission(self, request, obj=None):
@@ -110,3 +110,4 @@ admin.site.register(FrequentlyAskedQuestions, FrequentlyAskedQuestionsAdmin)
 admin.site.register(SocialMediaURL, SocialMediaUrlAdmin)
 admin.site.register(Page, PageAdmin)
 admin.site.register(Files, FilesAdmin)
+admin.site.register(BulkEmail)

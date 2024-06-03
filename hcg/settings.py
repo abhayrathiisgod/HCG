@@ -2,12 +2,10 @@ from pathlib import Path
 import os
 from .ckeditor_settings import CKEDITOR_5_CONFIGS
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-9t52$h5v60v@^&)lx$)v!hq3j2#ox#$+_q&x(9phzz!b@53l(#'
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
@@ -73,7 +71,6 @@ STATICFILES_DIRS = [
     BASE_DIR / 'staticfiles',
 ]
 
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
@@ -84,7 +81,6 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -113,7 +109,6 @@ REST_FRAMEWORK = {
     'OFFSET_QUERY_PARAM': 'offset',
 }
 
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'IN'
@@ -124,14 +119,7 @@ USE_TZ = True
 
 TIME_ZONE = 'UTC'
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.0/howto/static-files/
-
 STATIC_URL = 'static/'
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
@@ -145,3 +133,10 @@ MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 CKEDITOR_5_CUSTOM_CSS = 'css/ckeditor5/admin_dark_mode_fix.css'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com' 
+EMAIL_PORT = 587 
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'abhayrathi448@gmail.com'  
+EMAIL_HOST_PASSWORD = 'cqtrwvhcsveujydi' 

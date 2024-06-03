@@ -1,7 +1,9 @@
-from django.db.models.signals import pre_save, post_delete
+from django.db.models.signals import pre_save, post_delete, post_save
 from django.dispatch import receiver
-from .models import ContactUs, Designation, Files, OurInitiatives
+from .models import ContactUs, Designation, Files, OurInitiatives, NewsLetter, BulkEmail
 from django.core.exceptions import ValidationError
+from django.conf import settings
+from django.core.mail import send_mail
 import re
 
 @receiver(pre_save, sender=OurInitiatives)
@@ -63,3 +65,24 @@ def pre_save_bulletin(sender, instance, **kwargs):
 @receiver(post_delete, sender=Files)
 def post_delete_Files(sender, instance, **kwargs):
     instance.image.delete(save=False)
+
+
+# send mail for cong subscribed to email list
+    
+@receiver(post_save, sender=NewsLetter)
+def send_newsletter_confirmation_email(sender, instance, created, **kwargs):
+    if created:
+        subject = 'Thank you for subscribing!'
+        message = 'Welcome to our newsletter. You are now subscribed to receive updates.'
+        recipient_list = [instance.email]
+        sender_email = settings.EMAIL_HOST_USER
+        send_mail(subject, message, sender_email, recipient_list)
+
+@receiver(post_save, sender=BulkEmail)
+def send_bulk_email(sender, instance, created, **kwargs):
+    if instance.message:
+        recipients = instance.recipients.values_list('email', flat=True)
+        subject = instance.subject
+        message = instance.message
+        sender_email = settings.EMAIL_HOST_USER
+        send_mail(subject, message, sender_email, recipients)

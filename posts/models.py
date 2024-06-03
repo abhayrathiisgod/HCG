@@ -4,6 +4,17 @@ from django_ckeditor_5.fields import CKEditor5Field
 import uuid
 # Create your models here.
 
+class PostMeta(models.Model):
+    class Meta:
+        abstract = True
+
+    uuid = models.UUIDField(default = uuid.uuid4,editable = False)
+    name = models.CharField(max_length=255)
+
+    def __str__(self) -> str:
+        return self.name
+    
+
 class Author(models.Model):
     class Meta:
         verbose_name = "Author"
@@ -17,31 +28,26 @@ class Author(models.Model):
     def __str__(self):
         return self.name
 
-class PostType(models.Model):
+class PostType(PostMeta):
     class Meta:
         verbose_name = "Post Type"
         verbose_name_plural = "2. Post Types"
-    uuid = models.UUIDField(default = uuid.uuid4,editable = False)
-    name = models.CharField(max_length=255)
-
-    def __str__(self) -> str:
-        return self.name
     
-class PostTag(models.Model):
+    pass
+    
+class PostTag(PostMeta):
+
     class Meta:
         verbose_name = "Post Tag"
         verbose_name_plural = "3. Post Tags"
-    uuid = models.UUIDField(default = uuid.uuid4,editable = False)
-    name = models.CharField(max_length=255)
-
-    def __str__(self) -> str:
-        return self.name
+    pass
 
 class Post(models.Model):
 
     class Meta:
         verbose_name = "Posts"
         verbose_name_plural = "4. Posts"
+
     uuid = models.UUIDField(default = uuid.uuid4,editable = False)
     post_type = models.ForeignKey(PostType, on_delete=models.PROTECT)
     post_tag = models.ForeignKey(PostTag, on_delete=models.PROTECT)
@@ -65,9 +71,11 @@ class Post(models.Model):
 
 
 class FeaturedBlogs(models.Model):
+
     class Meta:
         verbose_name = "Featured Blogs"
         verbose_name_plural = "5. Featured Blogs"
+
     uuid = models.UUIDField(default = uuid.uuid4,editable = False)
     BlogPost1 = models.ForeignKey(Post, on_delete=models.PROTECT, related_name='featured_blog_post_1')
     BlogPost2 = models.ForeignKey(Post, on_delete=models.PROTECT, related_name='featured_blog_post_2')
@@ -75,4 +83,4 @@ class FeaturedBlogs(models.Model):
     BlogPost4 = models.ForeignKey(Post, on_delete=models.PROTECT, related_name='featured_blog_post_4')
 
     def __str__(self):
-        return f"{str(self.BlogPost1.title)} {str(self.BlogPost2.title)} {str(self.BlogPost3.title)} {str(self.BlogPost4.title)}"
+        return f"{str(self.BlogPost1.title)}  {str(self.BlogPost2.title)} {str(self.BlogPost3.title)} {str(self.BlogPost4.title)}"

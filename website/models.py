@@ -80,6 +80,7 @@ class ContactHcg(models.Model):
         return "Contact HCG"
     
 
+
 class ContactUs(models.Model):
     class Meta:
         verbose_name = "Contact Us"
@@ -101,7 +102,15 @@ class NewsLetter(models.Model):
 
     def __str__(self) -> str:
         return self.email
+    
+class BulkEmail(models.Model):
+    subject = models.CharField(max_length=255)
+    message = models.TextField()
+    sent_at = models.DateTimeField(auto_now_add=True)
+    recipients = models.ManyToManyField(NewsLetter)
 
+    def __str__(self):
+        return self.subject
 
 class FrequentlyAskedQuestions(models.Model):
     class Meta:

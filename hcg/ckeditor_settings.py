@@ -1,5 +1,3 @@
-
-
 customColorPalette = [
    {
       'color': 'hsl(4, 90%, 58%)',
