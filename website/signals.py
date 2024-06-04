@@ -5,6 +5,8 @@ from django.core.exceptions import ValidationError
 from django.conf import settings
 from django.core.mail import send_mail
 import re
+from celery import shared_task
+#from redismail import settings
 
 @receiver(pre_save, sender=OurInitiatives)
 def pre_save_OurInitiatives(sender, instance, **kwargs):
@@ -78,11 +80,14 @@ def send_newsletter_confirmation_email(sender, instance, created, **kwargs):
         sender_email = settings.EMAIL_HOST_USER
         send_mail(subject, message, sender_email, recipient_list)
 
+
+@shared_task(bind=True)
 @receiver(post_save, sender=BulkEmail)
-def send_bulk_email(sender, instance, created, **kwargs):
-    if instance.message:
-        recipients = instance.recipients.values_list('email', flat=True)
-        subject = instance.subject
-        message = instance.message
-        sender_email = settings.EMAIL_HOST_USER
-        send_mail(subject, message, sender_email, recipients)
+def send_bulk_email_task(sender, instance, created, **kwargs):
+    if created:  
+        if instance.message:
+            recipients = instance.recipients.values_list('email', flat=True)
+            subject = instance.subject
+            message = instance.message
+            sender_email = settings.EMAIL_HOST_USER
+            send_mail.delay(subject, message, sender_email, recipients)

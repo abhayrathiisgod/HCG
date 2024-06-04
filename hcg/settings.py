@@ -30,6 +30,8 @@ THIRD_PARTY_APPS = [
     'rest_framework',
     'django_filters',
     'storages',
+    'whitenoise.runserver_nostatic',
+    #'django-celery-results',
 ]
 
 INSTALLED_APPS = INSTALLED_APPS + MY_APPS + THIRD_PARTY_APPS
@@ -42,6 +44,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'hcg.urls'
@@ -74,11 +77,11 @@ STATICFILES_DIRS = [
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': 'mydatabase',
-        'USER': 'myusername',
+        'USER': 'myuser',
         'PASSWORD': 'mypassword',
-        'HOST': 'hcg-youth.chugiqweehte.eu-north-1.rds.amazonaws.com',  
+        'HOST': '127.0.0.1',  
         'PORT': '5432',
     }
 }
@@ -141,15 +144,22 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'abhayrathi448@gmail.com'  
 EMAIL_HOST_PASSWORD = 'cqtrwvhcsveujydi' 
+DEFAULT_FROM_EMAIL = 'abhayrathi448@gmail.com'
 
+# AWS_STORAGE_BUCKET_NAME = 'youthhcg'
+# #AWS_STORAGE_BUCKET_NAME = 'Hcg-youth'
+# AWS_ACCESS_KEY_ID = 'AKIA5FTZEIATSEU6VUHS'
+# AWS_SECRET_ACCESS_KEY = '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'
+# AWS_S3_REGION_NAME = 'eu-north-1'
+# AWS_S3_FILE_OVERWRITE= False
+# AWS_DEFAULT_ACL =None
+# AWS_S3_VERIFY= True
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-AWS_STORAGE_BUCKET_NAME = 'youthhcg'
-#AWS_STORAGE_BUCKET_NAME = 'Hcg-youth'
-AWS_ACCESS_KEY_ID = 'AKIA5FTZEIATSEU6VUHS'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_S3_REGION_NAME = 'eu-north-1'
-AWS_S3_FILE_OVERWRITE= False
-AWS_DEFAULT_ACL =None
-AWS_S3_VERIFY= True
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
+CELERY_ACCEPT_CONTENT = {'application/json'}
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Europe/Paris'
+CELERY_RESULT_BACKEND = 'django-db'
