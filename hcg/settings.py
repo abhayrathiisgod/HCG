@@ -29,6 +29,7 @@ THIRD_PARTY_APPS = [
     'django_ckeditor_5',
     'rest_framework',
     'django_filters',
+    'storages',
 ]
 
 INSTALLED_APPS = INSTALLED_APPS + MY_APPS + THIRD_PARTY_APPS
@@ -140,3 +141,15 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'abhayrathi448@gmail.com'  
 EMAIL_HOST_PASSWORD = 'cqtrwvhcsveujydi' 
+
+
+AWS_STORAGE_BUCKET_NAME = 'youthhcg'
+#AWS_STORAGE_BUCKET_NAME = 'Hcg-youth'
+AWS_ACCESS_KEY_ID = 'AKIA5FTZEIATSEU6VUHS'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_S3_REGION_NAME = 'eu-north-1'
+AWS_S3_FILE_OVERWRITE= False
+AWS_DEFAULT_ACL =None
+AWS_S3_VERIFY= True
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
