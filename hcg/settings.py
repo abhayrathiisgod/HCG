@@ -7,7 +7,7 @@ env = environ.Env()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-9t52$h5v60v@^&)lx$)v!hq3j2#ox#$+_q&x(9phzz!b@53l(#'
+SECRET_KEY = ''
 
 DEBUG = True
 
