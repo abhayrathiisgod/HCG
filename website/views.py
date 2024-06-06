@@ -5,8 +5,9 @@ from rest_framework.response import Response
 from rest_framework import status
 from django_filters.rest_framework import DjangoFilterBackend
 from .filters import FilesFilter, PageFilter, DesignationFilter
+from drf_spectacular.utils import extend_schema
 
-
+@extend_schema(description='Designation View')
 class DesignationView(ModelViewSet):
     queryset = Designation.objects.all()
     serializer_class = DesignationSerializer
@@ -14,7 +15,7 @@ class DesignationView(ModelViewSet):
     filterset_class = DesignationFilter
     lookup_field = 'uuid'
 
-
+@extend_schema(description='Designation View')
 class PageView(ModelViewSet):
     queryset = Page.objects.all()
     serializer_class = PageSerializer

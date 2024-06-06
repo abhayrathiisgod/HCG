@@ -30,8 +30,10 @@ THIRD_PARTY_APPS = [
     'rest_framework',
     'django_filters',
     'storages',
-    'whitenoise.runserver_nostatic',
+    #'whitenoise.runserver_nostatic',
     #'django-celery-results',
+    'rest_framework_swagger',
+    'drf_spectacular',
 ]
 
 INSTALLED_APPS = INSTALLED_APPS + MY_APPS + THIRD_PARTY_APPS
@@ -111,6 +113,14 @@ REST_FRAMEWORK = {
     ],
     'LIMIT_QUERY_PARAM': 'limit',
     'OFFSET_QUERY_PARAM': 'offset',
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'HCG APIs',
+    'DESCRIPTION': 'Backend of HCG',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    # OTHER SETTINGS
 }
 
 LANGUAGE_CODE = 'en-us'
