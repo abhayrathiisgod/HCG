@@ -1,6 +1,9 @@
 from pathlib import Path
 import os
+import environ
 from .ckeditor_settings import CKEDITOR_5_CONFIGS
+
+env = environ.Env()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -148,24 +151,24 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 CKEDITOR_5_CUSTOM_CSS = 'css/ckeditor5/admin_dark_mode_fix.css'
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com' 
-EMAIL_PORT = 587 
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'abhayrathi448@gmail.com'  
-EMAIL_HOST_PASSWORD = 'cqtrwvhcsveujydi' 
-DEFAULT_FROM_EMAIL = 'abhayrathi448@gmail.com'
+EMAIL_BACKEND = env('EMAIL_BACKEND')
+EMAIL_HOST = env('EMAIL_HOST')
+EMAIL_PORT = env.int('EMAIL_PORT')
+EMAIL_USE_TLS = env.bool('EMAIL_USE_TLS')
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
 
-# AWS_STORAGE_BUCKET_NAME = 'youthhcg'
-# #AWS_STORAGE_BUCKET_NAME = 'Hcg-youth'
-# AWS_ACCESS_KEY_ID = 'AKIA5FTZEIATSEU6VUHS'
-# AWS_SECRET_ACCESS_KEY = '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'
-# AWS_S3_REGION_NAME = 'eu-north-1'
-# AWS_S3_FILE_OVERWRITE= False
-# AWS_DEFAULT_ACL =None
-# AWS_S3_VERIFY= True
-# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# Uncomment and update these settings if you use AWS S3 for storage
+# AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME')
+# AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
+# AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
+# AWS_S3_REGION_NAME = env('AWS_S3_REGION_NAME')
+# AWS_S3_FILE_OVERWRITE = env.bool('AWS_S3_FILE_OVERWRITE')
+# AWS_DEFAULT_ACL = env('AWS_DEFAULT_ACL')
+# AWS_S3_VERIFY = env.bool('AWS_S3_VERIFY')
+# STATICFILES_STORAGE = env('STATICFILES_STORAGE')
+# DEFAULT_FILE_STORAGE = env('DEFAULT_FILE_STORAGE')
 
 CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
 CELERY_ACCEPT_CONTENT = {'application/json'}
