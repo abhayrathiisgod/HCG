@@ -44,6 +44,7 @@ class Post(models.Model):
     class Meta:
         verbose_name = "Posts"
         verbose_name_plural = "4. Posts"
+        ordering = ('-created_at',)
 
     uuid = models.UUIDField(default = uuid.uuid4,editable = False)
     post_type = models.ForeignKey(PostType, on_delete=models.PROTECT)

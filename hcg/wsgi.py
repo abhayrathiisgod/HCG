@@ -11,6 +11,11 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
+print("WSGI script started")  # Debug statement
+
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'hcg.settings')
+print("DJANGO_SETTINGS_MODULE:",
+      os.environ['DJANGO_SETTINGS_MODULE'])  # Debug statement
 
 application = get_wsgi_application()
+print("WSGI application loaded")  # Debug statement
