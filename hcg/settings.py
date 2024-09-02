@@ -9,7 +9,7 @@ SECRET_KEY = 'fk(#5!d*g1=nk7&8)aj5lo0cdp08nlml89*8epgptp3ucdpd9y'
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.18.227', '127.0.0.1']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -31,8 +31,8 @@ THIRD_PARTY_APPS = [
     'rest_framework',
     'django_filters',
     'storages',
-    #'whitenoise.runserver_nostatic',
-    #'django-celery-results',
+    # 'whitenoise.runserver_nostatic',
+    # 'django-celery-results',
     'rest_framework_swagger',
     'drf_spectacular',
 ]
@@ -84,7 +84,7 @@ DATABASES = {
         'NAME': 'mydatabase',
         'USER': 'myuser',
         'PASSWORD': 'mypassword',
-        'HOST': '127.0.0.1',  
+        'HOST': '127.0.0.1',
         'PORT': '5432',
     }
 }
@@ -152,7 +152,7 @@ CKEDITOR_5_CUSTOM_CSS = 'css/ckeditor5/admin_dark_mode_fix.css'
 GDAL_LIBRARY_PATH = '/opt/homebrew/opt/gdal/lib/libgdal.dylib'
 GEOS_LIBRARY_PATH = '/opt/homebrew/opt/geos/lib/libgeos_c.dylib'
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
